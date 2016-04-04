@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<report>
+    <set-connection use="default"/>
+    <var name="years" eval="sql">
+        SELECT DISTINCT year(hire_date) from employees
+    </var>
+    <spreadsheet name="employee $year$" foreach="$year$ in $years$">
+        <row bold="true">
+            <col>#</col>
+            <col>birth</col>
+            <col>first name</col>
+            <col>last name</col>
+            <col>gender</col>
+            <col>hire date</col>
+        </row>
+        <sql>
+            SELECT * FROM employees where year(hire_date) = $year$
+        </sql>
+    </spreadsheet>
+</report>
